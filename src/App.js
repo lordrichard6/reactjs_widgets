@@ -3,6 +3,8 @@ import Accordion from "./components/Accordion";
 import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
 import Translate from "./components/Translate";
+import Route from "./components/Route";
+import Tranlate from "./components/Translate";
 
 const items = [
   {
@@ -34,53 +36,53 @@ const options = [
   },
 ];
 
-const showAccordion = () => {
-  if (window.location.pathname === "/") {
-    return <Accordion items={items} />;
-  }
-};
+// const showAccordion = () => {
+//   if (window.location.pathname === "/") {
+//     return <Accordion items={items} />;
+//   }
+// };
 
-const showList = () => {
-  if (window.location.pathname === "/list") {
-    return <Search />;
-  }
-};
+// const showList = () => {
+//   if (window.location.pathname === "/list") {
+//     return <Search />;
+//   }
+// };
 
-const showDropdown = () => {
-  if (window.location.pathname === "/dropdown") {
-    return <Dropdown />;
-  }
-};
+// const showDropdown = () => {
+//   if (window.location.pathname === "/dropdown") {
+//     return <Dropdown />;
+//   }
+// };
 
-const showTranslate = () => {
-  if (window.location.pathname === "/translate") {
-    return <Translate />;
-  }
-};
+// const showTranslate = () => {
+//   if (window.location.pathname === "/translate") {
+//     return <Translate />;
+//   }
+// };
 
 export default () => {
-  // const [selected, setSelected] = useState(options[0]);
+  const [selected, setSelected] = useState(options[0]);
   // const [showDropdown, setDropdown] = useState(true);
 
   return (
     <div>
-      {/* <Accordion items={items} /> */}
-      {/* <Search /> */}
-      {/* <button className="button" onClick={() => setDropdown(!showDropdown)}>
-        Toggle Dropdown
-      </button>
-      {showDropdown ? (
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+      <Route path="/list">
+        <Search />
+      </Route>
+      <Route path="/dropdown">
         <Dropdown
+          label="Select color"
+          options={options}
           selected={selected}
           onSelectedChange={setSelected}
-          options={options}
         />
-      ) : null} */}
-      {/* <Translate /> */}
-      {showAccordion()}
-      {showDropdown()}
-      {showList()}
-      {showTranslate()}
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
 };
